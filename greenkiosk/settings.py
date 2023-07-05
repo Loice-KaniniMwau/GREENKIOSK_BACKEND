@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'shoppingcart',
     'delivery',
     'payment',
+    'reviews',
+    'order',
 ]
 
 MIDDLEWARE = [

@@ -1,8 +1,9 @@
 from django.db import models
+from vendor.models import Vendor
 
 # Create your models here.
 class Product(models.Model):
-    # image=models.ImageField()
+    vendor=models.ForeignKey(Vendor,null=True,on_delete=models.CASCADE)
     name=models.CharField(max_length=32)
     price=models.DecimalField(max_digits=8,decimal_places=2)
     description=models.TextField()

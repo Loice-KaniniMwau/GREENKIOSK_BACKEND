@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="single_product">
+        <img src="{{customer.image.url}}" alt="images"/>
+        <h2>{{customer.name.username}}</h2>
+        <p>{{customer.first_Name}}</p>
+        <p>{{customer.last_Name}}</p>
+        <p>{{customer.delivery_Location}}</p>
+        <h4> {{customer.phone_No}}</h4>
+        <button><a href="{% url 'customer_delete_view' id=customer.id %}">Delete Customer</a> 
+        </button>
+        
+       
+    
+    </div>
+</body>
+</html>
+
+

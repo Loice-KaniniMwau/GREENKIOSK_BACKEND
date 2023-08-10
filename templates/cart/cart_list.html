@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div class="allproducts">
+        {% for cart in carts %}
+       
+            <div class="product-container">
+                 <img src="{{product.image.url}}" class="img"/> -->
+                <!-- <h1 class="product-name">Customer:{{ cart.customer.name }}</h1>
+                <h4>{{cart.products}}</h4>
+                <h4 class="product-description">{{cart.notes}}</h4>
+                
+                <h4 class="product-price">{{ cart.cartstatus}}</h4>
+                <a href="{% url 'cart_detail_view' id=cart.id %}">View Details</a> 
+                 <a href="{% url 'cart_update_view' id=cart.id %}">Edit Cart</a>
+            
+            </div>
+        
+      
+        {% endfor %}
+    </div>     -->
+    <ul>
+        {% for cart in carts %}
+            <li>Cart ID: {{ cart.id }} - Total Amount: {{ cart.calculate_total_amount }}</li>
+        {% endfor %}
+        </ul>
+        <p>Total Cart Amount: {{ total_amount }}</p>
+</body>
+</html>

@@ -32,3 +32,5 @@ class Shipment(models.Model):
 
 # 
 
+# to create and edit data usinng forms....we need models,model from,view to handle http request,url to route
+# requests to the view and a template to render the http response

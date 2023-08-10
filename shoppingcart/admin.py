@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from .models import ShoppingCart
 class ShoppingCartAdmin(admin.ModelAdmin):
-    list_display=("notes","cartstatus")
+    list_display=("quantity","notes","cartstatus")
     def display_total_amount(self, obj):
         return obj.calculate_total_amount()
 

@@ -11,17 +11,10 @@ class ShoppingCart(models.Model):
         ('completed', 'Completed'),
         ('abandoned', 'Abandoned'),
         )
-      # products=models.ManyToMany(Inventory)
-     customer=models.ForeignKey(Customer,null=True,on_delete=models.CASCADE)
-   #   products=models.ManyToManyField(Product)
-   #   nameofproduct=models.CharField(max_length=32)
-   #   totalitems=models.PositiveIntegerField()
+     user = models.ForeignKey(Customer, on_delete=models.CASCADE,null=True)
+     product = models.ForeignKey(Product, on_delete=models.CASCADE,null=True)
+     quantity = models.PositiveIntegerField(null=True)
      notes=models.TextField()
-   #   priceofeach=models.DecimalField(max_digits=32,decimal_places=2)
-   #   totalamount=models.DecimalField(max_digits=32,decimal_places=2)
      cartstatus=models.CharField(max_length=32,choices=STATUS_CHOICES)
-     def calculate_total_amount(self):
-        self.totalamount = self.totalitems * self.priceofeach
-        self.save()
-
+     
 

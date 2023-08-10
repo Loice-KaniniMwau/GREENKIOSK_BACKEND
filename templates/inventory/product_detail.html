@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button{
+border-radius: 10px;
+padding: 12px 12px ;
+border-style: none;
+background-color:rgb(16, 44, 16);
+color: white;
+    }
+    .single_product{
+   border: 2px hidden;
+   margin-left: 2%;
+    }
+</style>
+<body>
+    <div class="single_product">
+        <img src="{{product.image.url}}" alt="images"/>
+        <h2>{{product.name}}</h2>
+        <p>{{product.description}}</p>
+        <h4> {{product.price}}</h4>
+        <button>Add to Cart</button>
+        <button><a href="{% url 'delete_product_view' id=product.id %}">Delete Product</a> 
+        </button>
+
+    </div>
+   
+</body>
+</html>
+
+<!-- i have inventory--upload,list ,details,update
+customer..has the same
+order -has the same
+cart ..has the same 
+what is missing/..shipment
+
+add to cart in the product listing ..i click on a cart it should reflect on the shopping cart listing
+what else ..payment attached to a single user ...
+shipmet as well
+delivery-->

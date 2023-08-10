@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        /* Add your custom CSS styling here */
+        .product-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            margin-left: 20px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: green;
+        }
+
+        .view-details {
+            font-size: 14px;
+            color: green;
+        }
+        .allproducts{
+            display: grid;
+            grid-template-columns: repeat(6,1fr);
+            gap: 30px;
+            
+        }
+        .img{
+            width: 200px;
+            height: 150px;
+        }
+        a{
+            text-decoration: none;
+            color: green;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="allproducts">
+    {% for product in products %}
+   
+        <div class="product-container">
+            <img src="{{product.image.url}}" class="img"/>
+            <h1 class="product-name">{{ product.name }}</h1>
+            <h4 class="product-description">{{ product.description }}</h4>
+            <h4 class="product-price">{{ product.price }}</h4>
+            <h4>  <a href="{% url 'product_detail_view' id=product.id %}">View Details</a> </h4>
+             <a href="{% url 'product_update' id=product.id %}">Edit Product</a>
+             <button>Add to Cart</button>
+
+        
+        </div>
+    
+  
+    {% endfor %}
+</div>
+</body>
+</html>
+

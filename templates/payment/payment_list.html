@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+    
+      
+        
+    </style>
+</head>
+<body>
+    <div class="allproducts">
+    {% for payment in payments %}
+   
+        <div class="product-container">
+            <h1 class="product-name">{{payment.order }}</h1>
+            <h4 class="product-description">{{paymnet.amount }}</h4>
+            <h4 class="product-price">{{ payment.paymentmethod }}</h4>
+            <h4 class="product-price">{{payment.paymentstatus }}</h4>
+            <h4 class="product-price">{{ payment.datepaid}}</h4>
+            <button>  <a href="{% url 'payment_detail_view' id=payment.id %}">View Details</a> </button>
+            <button><a href="{% url 'payment_update_view' id=payment.id %}">Edit Paymnent</a>   </button> 
+             <button>DELIVERY</button>
+
+        
+        </div>
+    
+  
+    {% endfor %}
+</div>
+</body>
+</html>
+

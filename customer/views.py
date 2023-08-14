@@ -40,13 +40,7 @@ def delete_customer(request,id):
     return render(request, 'customer/delete_customer.html', {'customer': customer})
    
 
-    # def delete_product(request,id):
-    # product = get_object_or_404(Product, id=id)
-    # if request.method == 'POST':
-    #     product.delete()
-    #     return redirect("products_list_view")
-    # return render(request, 'inventory/delete_page.html', {'product': product})
-    
+   
 
     
 

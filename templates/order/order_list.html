@@ -8,17 +8,18 @@
 </head>
 <body>
     <div class="allproducts">
-    {% for product in products %}
+    {% for order in orders %}
    
         <div class="product-container">
             <!-- <img src="{{product.image.url}}" class="img"/> -->
-            <h1 class="product-name">{{ order.customer }}</h1>
+            <h1 class="product-name">{{ order.customer.name }}</h1>
+            <h1>{{order.product.name}}</h1>
             <h4 class="product-description">{{ order.order_number }}</h4>
             <h4 class="product-price">{{order.order_date }}</h4>
             <h4 class="product-price">{{order.order_status }}</h4>
 
-            <h4>  <a href="{% url 'order_detail_view' id=product.id %}">View Details</a> </h4>
-             <a href="{% url 'order_update_view' id=product.id %}">Edit Product</a>
+            <a href="{% url 'order_detail_view' id=order.id %}">View Details</a>
+            <a href="{% url 'order_update_view' id=order.id %}">Edit Order</a>
         
         </div>
     
@@ -28,19 +29,3 @@
 </body>
 </html>
 
-<!-- from django.db import models
-from customer.models import Customer
-
-# Create your models here.
-class Order(models.Model):
-    customer=models.ForeignKey(Customer,null=True,on_delete=models.CASCADE)
-    order_number = models.CharField(max_length=32, unique=True)
-    order_date = models.DateTimeField(auto_now_add=True)
-    order_status = models.CharField(max_length=16, choices=[
-        ('pending', 'Pending'),
-        ('shipped', 'Shipped'),
-        ('delivered', 'Delivered'),
-        ('canceled', 'CanceLled'),
-    ])
-
- -->

@@ -7,8 +7,6 @@ from order.models import Order
 class Payment(models.Model):
     PAYMENT_METHODS=(("mpesa","Mpesa"),("cash","Cash"),)
     PAYMENT_STATUS=(("approved","Approved"),("pending","Pending"),("cancelled","Canclled"),)
-    # nameofPayee=models.OneToOneField(User,on_delete=models.CASCADE,null=True,default=None)
-    # nameOfPayee=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
     order=models.OneToOneField(Order,on_delete=models.CASCADE,null=True)
     amount=models.DecimalField(default=0.00,max_digits=32,decimal_places=2)
     paymentmethod=models.CharField(max_length=32,choices=PAYMENT_METHODS)

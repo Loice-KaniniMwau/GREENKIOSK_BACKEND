@@ -6,9 +6,10 @@ from .views import order_detail
 from .views import delete_order
 urlpatterns=[
   path("order/upload/",order_upload_view,name="order_upload_view"),
-  path("order/list/<int:id>/",order_list,name="order_list_view"),
+  path("order/list/",order_list,name="order_list_view"),
   path("order/update/<int:id>/",order_update_view,name="order_update_view"),
   path("order/detail/<int:id>/",order_detail,name="order_detail_view"),
+    path("order/delete/<int:id>/",delete_order,name="order_delete_view"),
 
 
 ]

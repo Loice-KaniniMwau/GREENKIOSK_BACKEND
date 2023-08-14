@@ -1,9 +1,7 @@
 from django.contrib import admin
-
-# Register your models here.
 from .models import Delivery
 class DeliveryAdmin(admin.ModelAdmin):
-    list_display=("recepientname",
+    list_display=(
     "recepientphone",
     "deliveryadress",
     "deliverydate",
@@ -12,3 +10,11 @@ class DeliveryAdmin(admin.ModelAdmin):
     
 admin.site.register(Delivery,DeliveryAdmin)
 
+# recepientname=models.CharField(max_length=32)
+#     recepientphone=models.CharField(max_length=32) 
+#     deliveryadress=models.CharField(max_length=32) 
+#     deliverydate=models.DateTimeField(auto_now_add=True) 
+#     deliverystatus=models.CharField(max_length=32,choices=deliverystatus)
+
+
+# # 

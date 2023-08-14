@@ -12,8 +12,8 @@ def order_upload_view(request):
     return render(request,"order/order_upload.html",{"form":form})
 
 
-def order_list(request,id):
-    orders=Order.objects.get(id=id)
+def order_list(request):
+    orders=Order.objects.all()
     return render(request,"order/order_list.html",{"orders":orders})
 
 def order_detail(request,id):
@@ -36,8 +36,14 @@ def delete_order(request,id):
     if request.method == 'POST':
         order.delete()
         return redirect("order_list_view")
-    return render(request, 'order_delete.html', {'order': order})
-   
+    
+    return render(request, 'order/order_delete.html', {'order': order})
+    
+
+
+
+
+
 
 
     

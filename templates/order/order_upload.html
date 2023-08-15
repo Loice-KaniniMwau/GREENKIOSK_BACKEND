@@ -3,14 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Upload Order</title>
+    <style>
+         button{
+            padding: 12px 8px;
+            border-style: none;
+            background-color: rgb(90, 153, 90);
+            color: white;
+            margin-right: 20px;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
     <form method="post">
         {%csrf_token%}
         {{form.as_p}}
 
-        <button type="submit">Save</button>
+        <button type="submit">Save Order</button>
 
 
     </form>

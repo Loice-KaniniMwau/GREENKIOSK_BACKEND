@@ -3,36 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Order Details</title>
+    <style>
+          button{
+            padding: 12px 8px;
+            border-style: none;
+            background-color: rgb(90, 153, 90);
+            color: white;
+            margin-right: 20px;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="single_product">
+    <div >
         <h2>Customer Name:{{order.customer.name}}</h2>
         <h2>Order Number:{{order.order_number}}</h2>
         <p>Order Date:{{order.order_date}}</p>
         <h4> Order Status:{{order.order_status}}</h4>
         
-        <button><a href="{% url 'order_delete_view' id=order.id %}">Delte Order</a> 
+        <button><a href="{% url 'order_delete_view' id=order.id %}">Delete Order</a> 
         </button>
 
-        <button><a href="{% url 'order_delete_view' id=order.id %}">Confirm Order</a> 
+        <button>>Confirm Order
         </button>
 
 
     </div>
 </body>
 </html>
-
-
-<!--   customer=models.ForeignKey(Customer,null=True,on_delete=models.CASCADE)
-    product=models.ManyToManyField(Product,null=True)
-    order_number = models.CharField(max_length=32, unique=True)
-    order_date = models.DateTimeField(auto_now_add=True)
-    order_status = models.CharField(max_length=16, choices=[
-        ('pending', 'Pending'),
-        ('shipped', 'Shipped'),
-        ('delivered', 'Delivered'),
-        ('canceled', 'CanceLled'),
-    ])
-
- -->

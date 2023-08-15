@@ -9,17 +9,29 @@
             width: 300px;
             height: 300px;
         }
+        
+         a{
+            text-decoration: none;
+        }
+        button{
+            padding: 12px 8px;
+            border-style: none;
+            background-color: rgb(90, 153, 90);
+            color: white;
+            margin-right: 20px;
+        }
+    
     </style>
 </head>
 <body>
-    <div class="single_product">
+    <div class="customer-details">
         <img src="{{customer.image.url}}" alt="images"/>
-        <h2>{{customer.name.username}}</h2>
-        <p>{{customer.first_Name}}</p>
-        <p>{{customer.last_Name}}</p>
-        <p>{{customer.delivery_Location}}</p>
-        <h4> {{customer.phone_No}}</h4>
-        <button><a href="{% url 'customer_delete_view' id=customer.id %}">Delete Customer</a> 
+        <h2>UserName:{{customer.name.username}}</h2>
+        <p>First Name:{{customer.first_Name}}</p>
+        <p>Last Name :{{customer.last_Name}}</p>
+        <p>Delivery Location: {{customer.delivery_Location}}</p>
+        <h4>Phone Number: {{customer.phone_No}}</h4>
+        <button><a href="{% url 'customer_delete_view' id=customer.id %}">Delete Profile</a> 
         </button>
         
        

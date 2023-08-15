@@ -7,12 +7,12 @@
 </head>
 <body>
     <h1>Are you sure you want to cancel the payment?</h1>
-    <h1 class="product-name">{{payment.order }}</h1>
-    <h4 class="product-description">{{payment.amount }}</h4>
-    <h4 class="product-price">{{ payment.paymentmethod }}</h4>
+    <h1 >{{payment.order }}</h1>
+    <h4 >{{payment.amount }}</h4>
+    <h4 >{{ payment.paymentmethod }}</h4>
     <form method="post">
         {% csrf_token %}
-        <button type="submit">Delete</button>
+        <button type="submit">Cancel Payment</button>
     </form>
 </body>
 </html>

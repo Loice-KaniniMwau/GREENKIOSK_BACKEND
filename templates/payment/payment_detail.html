@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Payment Details</title>
 </head>
 <body>
-    <div class="single_product">
-        <h1 class="product-name">{{payment.order }}</h1>
-            <h4 class="product-description">{{paymnet.amount }}</h4>
-            <h4 class="product-price">{{ payment.paymentmethod }}</h4>
-            <h4 class="product-price">{{payment.paymentstatus }}</h4>
-            <h4 class="product-price">{{ payment.datepaid}}</h4>
+    <div>
+        <h1 >{{payment.order }}</h1>
+            <h4 >{{paymnet.amount }}</h4>
+            <h4 >{{ payment.paymentmethod }}</h4>
+            <h4>{{payment.paymentstatus }}</h4>
+            <h4 >{{ payment.datepaid}}</h4>
 
             <button>Delivery</button>
             <button><a href="{% url 'payment_delete_view' id=payment.id %}">Cancel Payment</a> 

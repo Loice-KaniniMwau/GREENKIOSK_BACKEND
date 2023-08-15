@@ -3,23 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product List</title>
+    <title>Order List</title>
+
+    <style>
+        .allorders{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+        }
+        a{
+            text-decoration: none;
+        }
+        button{
+            padding: 12px 8px;
+            border-style: none;
+            background-color: rgb(90, 153, 90);
+            color: white;
+            margin-right: 20px;
+        }
+    </style>
   
 </head>
 <body>
-    <div class="allproducts">
+    <div class="allorders">
     {% for order in orders %}
    
-        <div class="product-container">
-            <!-- <img src="{{product.image.url}}" class="img"/> -->
-            <h1 class="product-name">{{ order.customer.name }}</h1>
-            <h1>{{order.product.name}}</h1>
-            <h4 class="product-description">{{ order.order_number }}</h4>
-            <h4 class="product-price">{{order.order_date }}</h4>
-            <h4 class="product-price">{{order.order_status }}</h4>
+        <div>
+           
+            <h1 >Customer Name:{{ order.Customer.name }}</h1>
+            <h1>Ordered Products :{{order.Product.name}}</h1>
+            <h4 >Order Number :{{ order.order_number }}</h4>
+            <h4>Time Stamp :{{order.order_date }}</h4>
+            <h4 >Order Status:{{order.order_status }}</h4>
 
-            <a href="{% url 'order_detail_view' id=order.id %}">View Details</a>
-            <a href="{% url 'order_update_view' id=order.id %}">Edit Order</a>
+            <button>   <a href="{% url 'order_detail_view' id=order.id %}">View Details</a></button>
+
+          
+          <button> <a href="{% url 'order_update_view' id=order.id %}">Edit Order</a> </button> 
         
         </div>
     

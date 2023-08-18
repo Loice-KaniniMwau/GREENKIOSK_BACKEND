@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Details</title>
+</head>
+<body>
+    <div class="customer-details">
+        
+        <h4 class="product-description">{{delivery.payment}}</h4>
+        <h4 class="product-price">{{delivery.recepientphone}}</h4>
+        <h4 class="product-price">{{delivery.deliveryadress}}</h4>
+        <h4 class="product-price">{{delivery.deliverydate}}</h4>
+        <h4 class="product-price">{{delivery.deliverystatus}}</h4>
+        <button><a href="{% url 'delete_delivery_view' id=delivery.id %}">Delete Profile</a> 
+        </button>
+        
+       
+    
+    </div>
+</body>
+</html>
+<!--  <div class="single_product">
+        <img src="{{product.image.url}}" alt="images"/>
+        <h2>{{product.name}}</h2>
+        <p>{{product.description}}</p>
+        <h4> {{product.price}}</h4>
+        <button>Add to Cart</button>
+        <button><a href="{% url 'delete_product_view' id=product.id %}">Delete Product</a> 
+        </button>
+
+    </div> -->

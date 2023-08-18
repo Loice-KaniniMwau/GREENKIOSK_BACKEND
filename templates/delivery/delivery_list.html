@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery List</title>
+    <style>
+        .Deliveries{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            
+        }
+        .delivery-container{
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            margin-left: 20px;
+
+        }
+        a{
+            text-decoration: none;
+            color: green;
+            
+        }
+        button{
+            padding: 8px 8px;
+            border-style: none;
+            background-color: rgb(90, 153, 90);
+            color: white;
+            margin-right: 20px;
+            margin-top: 20px;
+        }
+        h1{
+            text-align: center;
+            font-weight: bolder;
+            color: rgb(36, 68, 36);
+        }
+    </style>
+</head>
+<body>
+    <h1>Delivery List</h1>  
+    <div class="Deliveries">
+       
+        {% for delivery in delivery %}
+       
+            <div class="delivery-container">
+                
+             
+            <h4 class="product-description">{{delivery.payment.name}}</h4>
+            <h4 class="product-price">Delivery Contact:{{delivery.recepientphone}}</h4>
+            <h4 class="product-price">Delivery Address:{{delivery.deliveryadress}}</h4>
+             <h4 class="product-price">Timestamp:{{delivery.deliverydate}}</h4>
+            <h4 class="product-price">Delivery Status:{{delivery.deliverystatus}}</h4>
+                <button>  <a href="{% url 'delivery_detail_view' id=delivery.id %}">View Details</a> </button>
+                <button>  <a href="{% url 'delivery_update_view' id=delivery.id %}">Edit Delivery</a> </button>
+            
+            </div>
+        
+      
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+<!-- <div class="allproducts">
+    {% for product in products %}
+   
+        <div class="product-container">
+            <img src="{{product.image.url}}" class="img"/>
+            <h1 class="product-name">{{ product.name }}</h1>
+            <h4 class="product-description">{{ product.description }}</h4>
+            <h4 class="product-price">{{ product.price }}</h4>
+            <h4>  <a href="{% url 'product_detail_view' id=product.id %}">View Details</a> </h4>
+             <a href="{% url 'product_update' id=product.id %}">Edit Product</a>
+             <br>
+             <button>Add to Cart</button>
+
+        
+        </div>
+    
+  
+    {% endfor %}
+</div> -->

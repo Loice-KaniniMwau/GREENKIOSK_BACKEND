@@ -29,8 +29,8 @@
    
         <div>
            
-            <h1 >Customer Name:{{ order.Customer.name }}</h1>
-            <h1>Ordered Products :{{order.Product.name}}</h1>
+            <h1 >Customer Name:{{ order.customer.name }}</h1>
+            <h1>Ordered Products :{{order.product.name}}</h1>
             <h4 >Order Number :{{ order.order_number }}</h4>
             <h4>Time Stamp :{{order.order_date }}</h4>
             <h4 >Order Status:{{order.order_status }}</h4>
@@ -48,3 +48,5 @@
 </body>
 </html>
 
+<!--  customer=models.ForeignKey(Customer,null=True,on_delete=models.CASCADE)
+    product=models.ManyToManyField(Product,null=True) -->

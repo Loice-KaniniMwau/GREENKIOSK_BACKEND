@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Payment
 class PaymentAdmin(admin.ModelAdmin):
-    list_display=("amount","paymentStatement","paymentmethod","paymentstatus","datepaid")
+    list_display=("order","amount","paymentStatement","paymentmethod","paymentstatus","datepaid")
 admin.site.register(Payment,PaymentAdmin)
 
 #  nameofPayee=models.OneToOneField(User,on_delete=models.CASCADE)

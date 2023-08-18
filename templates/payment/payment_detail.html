@@ -8,11 +8,12 @@
 </head>
 <body>
     <div>
-        <h1 >{{payment.order }}</h1>
-            <h4 >{{paymnet.amount }}</h4>
-            <h4 >{{ payment.paymentmethod }}</h4>
-            <h4>{{payment.paymentstatus }}</h4>
-            <h4 >{{ payment.datepaid}}</h4>
+        <h1>Payment Details</h1>
+        
+            <h4 >Amount:{{payment.amount }}</h4>
+            <h4 >Payment Method:{{ payment.paymentmethod }}</h4>
+            <h4>Payment Status:{{payment.paymentstatus }}</h4>
+            <h4 >Timestamp:{{ payment.datepaid}}</h4>
 
             <button>Delivery</button>
             <button><a href="{% url 'payment_delete_view' id=payment.id %}">Cancel Payment</a> 

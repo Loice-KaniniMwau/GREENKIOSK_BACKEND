@@ -4,32 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shopping Cart List</title>
+    <style>
+         a{
+            text-decoration: none;
+            color: green;
+            
+        }
+        button{
+            padding: 8px 8px;
+            border-style: none;
+            background-color: rgb(90, 153, 90);
+            color: white;
+            margin-right: 20px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <!-- <div class="allproducts">
+    <div class="allproducts">
         {% for cart in carts %}
        
             <div class="product-container">
-                 <img src="{{product.image.url}}" class="img"/> -->
-                <!-- <h1 class="product-name">Customer:{{ cart.customer.name }}</h1>
-                <h4>{{cart.products}}</h4>
-                <h4 class="product-description">{{cart.notes}}</h4>
+                 
+              
+                <h4>Products :{{cart.product.name}}</h4>
+                <h4 class="product-description">Notes:{{cart.notes}}</h4>
                 
-                <h4 class="product-price">{{ cart.cartstatus}}</h4>
-                <a href="{% url 'cart_detail_view' id=cart.id %}">View Details</a> 
-                 <a href="{% url 'cart_update_view' id=cart.id %}">Edit Cart</a>
+                <h4 class="product-price">Cart Status:{{ cart.cartstatus}}</h4>
+             <button><a href="{% url 'cart_detail_view' id=cart.id %}">View Details</a>  </button>   
+               <button> <a href="{% url 'cart_update_view' id=cart.id %}">Edit Cart</a></button>  
             
             </div>
         
       
         {% endfor %}
-    </div>     -->
-    <ul>
-        {% for cart in carts %}
-            <li>Cart ID: {{ cart.id }} - Total Amount: {{ cart.calculate_total_amount }}</li>
-        {% endfor %}
-        </ul>
-        <p>Total Cart Amount: {{ total_amount }}</p>
+    </div>     
+   
 </body>
-</html>
+</html> 

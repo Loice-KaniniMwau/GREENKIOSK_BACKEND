@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Delivery</title>
+</head>
+<body>
+    <h1>Are you sure you want to delete this product?</h1>
+           
+    <h4 class="product-description">{{delivery.payment}}</h4>
+    <h4 class="product-price">{{delivery.recepientphone}}</h4>
+    <h4 class="product-price">{{delivery.deliveryaddress}}</h4>
+    <h4 class="product-price">{{delivery.deliverydate}}</h4>
+    <h4 class="product-price">{{delivery.deliverystatus}}</h4>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    
+</body>
+</html>

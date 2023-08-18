@@ -3,26 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product List</title>
+    <title>Payment List</title>
     <style>
     
-      
+    a{
+            text-decoration: none;
+            color: green;
+            
+        }
+        button{
+            padding: 8px 8px;
+            border-style: none;
+            background-color: rgb(90, 153, 90);
+            color: white;
+            margin-right: 20px;
+            margin-top: 20px;
+        }
+        .paymentlist{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+        }
+    .single_payment{
+        border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            margin-left: 20px;
+    }
+
+    h1{
+            text-align: center;
+            font-weight: bolder;
+            color: rgb(36, 68, 36);
+        }
         
     </style>
 </head>
 <body>
-    <div >
+    <h1>Payment List</h1>
+    <div class="paymentlist" >
     {% for payment in payments %}
    
-        <div >
-            <h1>{{payment.order }}</h1>
-            <h4>{{paymnet.amount }}</h4>
-            <h4 >{{ payment.paymentmethod }}</h4>
-            <h4 >{{payment.paymentstatus }}</h4>
-            <h4 >{{ payment.datepaid}}</h4>
+        <div class="single_payment">
+            
+            <h4>Amount:{{payment.amount }}</h4>
+            <h4 >Payment Method:{{ payment.paymentmethod }}</h4>
+            <h4 >Payment Status: {{payment.paymentstatus }}</h4>
+            <h4 >Timestamp:{{ payment.datepaid}}</h4>
             <button>  <a href="{% url 'payment_detail_view' id=payment.id %}">View Details</a> </button>
             <button><a href="{% url 'payment_update_view' id=payment.id %}">Edit Paymnent</a>   </button> 
-             <button>DELIVERY</button>
+             <button>Place Delivery</button>
 
         
         </div>

@@ -37,7 +37,8 @@ color: white;
         <h2>{{product.name}}</h2>
         <p>{{product.description}}</p>
         <h4> {{product.price}}</h4>
-        <button>Add to Cart</button>
+        <a class="name" href="{% url 'add_to_cart' id=product.id %}"><button class="add_to_cart">Add </button></a>
+
         <button><a href="{% url 'delete_product_view' id=product.id %}">Delete Product</a> 
         </button>
 

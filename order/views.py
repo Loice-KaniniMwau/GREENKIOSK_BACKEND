@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .forms import OrderUploadForm
 from order.models import Order
+from shoppingcart.models import ShoppingCart
+from inventory.models import Product
 
 def order_upload_view(request):
     if request.method=="POST":
@@ -16,10 +18,13 @@ def order_list(request):
     orders=Order.objects.all()
     return render(request,"order/order_list.html",{"orders":orders})
 
-def order_detail(request,id):
-    order=Order.objects.get(id=id)
-    return render(request,"order/order_detail.html",{"order":order})
-
+def order_summary(request):
+    product_cart = ShoppingCart.objects.all()
+    total_cart_price = 0
+    for item in product_cart:
+        item.total_price = item.product_price * item.product_quantity
+        total_cart_price += item.total_price
+    return render(request, "order/order_summary.html", {"product_cart": product_cart, "total_cart_price": total_cart_price})
 def order_update_view(request,id):
     order=Order.objects.get(id=id)
     if request.method=="POST":
@@ -39,6 +44,7 @@ def delete_order(request,id):
     
     return render(request, 'order/order_delete.html', {'order': order})
     
+
 
 
 

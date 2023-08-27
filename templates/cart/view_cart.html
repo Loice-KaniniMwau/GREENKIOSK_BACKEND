@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+        /* Your existing styles here */
+
+        .cart-container {
+           
+        
+            background-color: #fff;
+          
+            
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+        }
+
+        .cart-item {
+            /* border: solid 2px blanchedalmond; */
+          
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .item-image {
+            max-width: 100px;
+            margin-right: 20px;
+        }
+
+        .item-details {
+            flex-grow: 1;
+        }
+        /* input{
+            padding: 1px 1px;
+            border-style: none;
+        } */
+        .cart_buttons{
+            gap: 20%;
+            margin-left: 40%;
+            justify-content: center;
+        }
+
+        .button,
+        .button1{
+            padding: 12px 12px;
+            background-color: rgb(85, 145, 85);
+            color: white;
+            /* margin-left: 10%; */
+            margin-top: 3%;
+
+           
+
+        }
+        .button1{
+            margin-right: 4%;
+        }
+        .remove{
+            margin-top: 3%;
+        }
+        h1{
+            text-align: center;
+            color: rgb(8, 158, 8); 
+            margin-top: 4%;
+        }
+    .total_price{
+        text-align: center;
+        font-size: xx-large;
+        font-style: italic;
+        font-weight: bolder;
+        /* color: rgb(8, 158, 8); */
+    }
+      
+
+    </style>
+</head>
+<body>
+    <h1>My Cart</h1>
+    <div class="cart-container">
+        {% for product in product_cart %}
+        <div class="cart-item">
+         
+                <img src="{{ product.product_image.url }}" />
+           
+            <div class="item-details">
+                <h2>{{ product.product_name }}</h2>
+                <p>Quantity: {{ product.product_quantity }}</p>
+                <p>Price: {{ product.product_price }}</p>
+                <form method="post" action="{% url 'update_cart' id=product.id %}">
+                    {% csrf_token %}
+                    <input type="number" name="quantity" value="{{ product.product_quantity }}" min="1">
+                    <button type="submit" class="update">Update</button>
+                </form>
+                <a href="{% url 'remove_item' id=product.id %}" class="remove"> <button  class="button"> Remove</button></a>
+            </div>
+        </div>
+        {% endfor %}
+       
+    </div>
+    <div class="total_price">
+        <p>Total Cart Amount: Ksh {{ total_cart_price }} 
+          </p>
+        <a href="{% url 'order_summary_view' %}">   <button class="button" >Order Summary</button> </a>
+    </div>
+    <div class="cart_buttons">
+        <a href="{% url 'products_list_view' %}"><button class="button" >Continue Shopping</button></a>
+        <a href="{% url 'empty_cart' %}"><button  class="button1" >Clear Cart</button></a>
+        
+    </div>
+</body>
+</html>

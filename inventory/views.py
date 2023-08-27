@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
+from django.db.models import Q
 from .forms import ProductUploadForm
 from inventory.models import Product
 
@@ -15,6 +16,9 @@ def product_upload_view(request):
 
 def products_list(request):
     products=Product.objects.all()
+    search_query = request.GET.get('search')
+    if search_query:
+        products = products.filter(Q(name__icontains=search_query) | Q(description__icontains=search_query))
     return render(request,"inventory/products_list.html",{"products":products})
 
 def product_detail(request,id):

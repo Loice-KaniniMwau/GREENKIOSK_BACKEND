@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary</title>
+    <style>
+        ul{
+            list-style: none;
+        }
+        .order_summary{
+            text-align: center;
+            font-size: xx-large;
+            color: rgb(13, 75, 13);
+            font-weight: bolder;
+
+
+        }
+        table {
+            margin-left: 15%;
+        width: 50%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 6px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    /* Styling for the total price */
+    p {
+      
+        font-weight: bold;
+        margin-top: 10px;
+        /* text-align: center; */
+        color: rgb(36, 175, 36);
+        margin-left: 15%;
+        
+    }
+    button
+        {
+            padding: 12px 12px;
+            background-color: rgb(85, 145, 85);
+            color: white;
+            margin-left: 15%;
+            margin-top: 3%;
+
+           
+
+        }
+        .total_price{
+        /* text-align: center; */
+        font-size: xx-large;
+        font-style: italic;
+        font-weight: bolder;
+        /* color: rgb(8, 158, 8); */
+    }
+    .button2{
+        padding: 12px 12px;
+            background-color: rgb(85, 145, 85);
+            color: white;
+            margin-left: 3%;
+            margin-top: 3%;
+    }
+
+    </style>
+    
+</head>
+<body>
+    <!-- orders/order_summary.html -->
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h4 class="order_summary">Order Summary</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in product_cart %}
+                <tr>
+                    <td>{{ item.product_name }}</td>
+                    <td>{{ item.product_quantity }}</td>
+                    <td>{{ item.product_price }}</td>
+                    <td>{{ item.total_price }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p class="total_price">Total Cart Amount: {{ total_cart_price }} <button  class="button2" >Proceed to Pay</button></p>
+    <a href="{% url 'products_list_view' %}"><button class="button" >Continue Shopping</button></a>
+    <a href="{% url 'view_cart' %}"><button  class="button" >View Cart</button></a>
+
+    <!-- <h1>Order Summary</h1>
+    <div class="order_summary">
+        <ul>
+            {% for item in product_cart %}
+                <li>{{ item.product_name }} - {{ item.product_quantity }} x Ksh{{ item.product_price }} = Ksh{{ item.total_price }}</li>
+            {% endfor %}
+        </ul>
+        <p>Total: Ksh{{ total_cart_price }}</p>
+    </div> -->
+    
+    
+  
+</body>
+</html>
+
+    
+</body>
+</html>

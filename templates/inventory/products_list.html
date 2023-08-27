@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
     <style>
+        form{
+        
+           justify-content: center;
+           margin-left: 45%;
+        }
+        input{
+            padding: 12px 60px;
+        }
+
         .product-container {
             border: 1px solid #ccc;
             padding: 10px;
@@ -56,9 +65,40 @@
             margin-right: 20px;
             margin-top: 20px;
         }
+        h1{
+            text-align: center;
+            font-weight: bolder;
+            color: rgb(36, 68, 36);
+            margin-bottom: 15px;
+        }
+        .searchbutton{
+            padding: 17px 12px;
+            border-style: none;
+            background-color: rgb(90, 153, 90);
+            color: white;
+            margin-right: 20px;
+            margin-top: 20px;
+            border-radius: 12px;
+        }
+        .but{
+            margin-left:14% ;
+            margin-bottom: 2%;
+        }
     </style>
 </head>
 <body>
+    <h1>Products List</h1>
+    <form method="GET" action="{% url 'products_list_view' %}">
+        <input type="text" name="search" placeholder="Search products" value="{{ search_query }}">
+        <button type="submit" class="searchbutton">Search</button>
+    </form>
+    
+    {% if search_query %}
+        <h2>Search results for '{{ search_query|lower }}' (Case-insensitive)</h2>
+    {% endif %}
+
+    <a href="{% url 'view_cart' %}"><button class="but">Open Cart</button></a>
+
     <div class="allproducts">
     {% for product in products %}
    
@@ -68,9 +108,10 @@
             <h4 class="product-description">{{ product.description }}</h4>
             <h4 class="product-price">{{ product.price }}</h4>
             <h4>  <a href="{% url 'product_detail_view' id=product.id %}">View Details</a> </h4>
-             <a href="{% url 'product_update' id=product.id %}">Edit Product</a>
+            <a href="{% url 'product_update' id=product.id %}">Edit Product</a>
              <br>
-             <button>Add to Cart</button>
+            <a class="name" href="{% url 'add_to_cart' id=product.id %}"><button class="add_to_cart">Add to Cart</button></a>
+          
 
         
         </div>
@@ -78,6 +119,7 @@
   
     {% endfor %}
 </div>
+
 </body>
 </html>
 

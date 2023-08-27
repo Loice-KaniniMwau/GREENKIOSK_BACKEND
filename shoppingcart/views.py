@@ -1,60 +1,48 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .forms import CartUploadForm
+
 # from invento.models import Product
 from shoppingcart.models import ShoppingCart
 from inventory.models import Product
-from .forms import AddToCartForm
+
+from datetime import datetime
 # Create your views here.
-
-def cart_upload_view(request):
-    if request.method=="POST":
-        form=CartUploadForm(request.POST)
-        if form.is_valid():
-            form.save()
-    else:
-        form=CartUploadForm()
-    return render(request,"cart/cart_upload.html",{"form":form})
-
-
-def cart_list(request):
-    carts=ShoppingCart.objects.all()
-    return render(request,"cart/cart_list.html",{"carts":carts})
-
-def cart_detail(request,id):
-    cart=ShoppingCart.objects.get(id=id)
-    return render(request,"cart/cart_detail.html",{"cart":cart})
-
-def cart_update_view(request,id):
-    cart=ShoppingCart.objects.get(id=id)
-    if request.method=="POST":
-        form=CartUploadForm(request.POST,instance=cart)
-        if form.is_valid():
-            form.save()
-        return redirect("cart_detail_view",id=cart.id)
-    else:
-        form=CartUploadForm(instance=cart)
-    return render(request,"cart/edit_cart.html",{"form":form})
-
-
-def add_to_cart(request,id):
+def view_cart(request):
+    product_cart = ShoppingCart.objects.all()
+    total_cart_price = 0
+    for item in product_cart:
+        item.total_price = item.product_price * item.product_quantity
+        total_cart_price += item.total_price
+    return render(request,"cart/view_cart.html", {"product_cart": product_cart, "total_cart_price": total_cart_price})
+def update_cart(request, id):
     if request.method == 'POST':
-        form = AddToCartForm(request.POST)
-        if form.is_valid():
-            quantity = form.cleaned_data['quantity']
-            user = request.user 
-            product = get_object_or_404(Product, id=id)
-            cart_item, created = ShoppingCart.objects.get_or_create(user=user, product=product)
-            cart_item.quantity += quantity
+        quantity = int(request.POST.get('quantity', 1))
+        cart_item = ShoppingCart.objects.get(id=id)
+        if quantity > 0:
+            cart_item.product_quantity = quantity
             cart_item.save()
-            return redirect('cart_list_view')  # Redirect to the cart list
-    else:
-        form = AddToCartForm()
-    return render(request, 'add_to_cart.html', {'form': form,"id":id})
-def cart_view(request):
-    user = request.user
-    cart_items = ShoppingCart.objects.filter(user=user)
-    total_amount = sum(item.product.price * item.quantity for item in cart_items)
-    return render(request, 'cart_list.html', {'cart_items': cart_items, 'total_amount': total_amount})
+        else:
+            cart_item.delete()
+    return redirect('view_cart')
+def remove_item(request, id):
+    cart_item = ShoppingCart.objects.get(id=id)
+    cart_item.delete()
+    return redirect('view_cart')
+def empty_cart(request):
+    ShoppingCart.objects.all().delete()
+    return redirect("view_cart")
+def add_to_cart(request, id):
+    product = Product.objects.get(id=id)
+    cart_item = ShoppingCart(
+        product_name = product.name,
+        product_price = product.price,
+        product_image = product.image,
+        product_quantity = 1,
+        
+    )
+    cart_item.save()
+    return redirect("products_list_view")
+
+
 
 
    

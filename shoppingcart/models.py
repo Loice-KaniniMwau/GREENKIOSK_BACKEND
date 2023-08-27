@@ -13,7 +13,10 @@ class ShoppingCart(models.Model):
         )
      user = models.ForeignKey(Customer, on_delete=models.CASCADE,null=True)
      product = models.ForeignKey(Product, on_delete=models.CASCADE,null=True)
-     quantity = models.PositiveIntegerField(null=True)
+     product_name=models.CharField(max_length=32,default="")
+     product_price=models.IntegerField(default=1)
+     product_quantity=models.IntegerField(default=1)
+     product_image=models.ImageField(default="")
      notes=models.TextField()
      cartstatus=models.CharField(max_length=32,choices=STATUS_CHOICES)
      

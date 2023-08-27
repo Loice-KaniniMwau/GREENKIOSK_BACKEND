@@ -6,5 +6,3 @@ class CartUploadForm(forms.ModelForm):
         model=ShoppingCart
         fields="__all__"
         
-class AddToCartForm(forms.ModelForm):
-    quantity = forms.IntegerField(min_value=1)

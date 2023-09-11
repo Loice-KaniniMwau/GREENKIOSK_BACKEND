@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from customer.models import Customer
 from order.models import Order
-from shoppingcart.models import ShoppingCart
+from shoppingcart.models import Product_Cart
 from .serializers import CustomerSerializer,InventorySerializer,OrderSerializer,ShoppingCartSerializer
 from rest_framework.response import Response
 from rest_framework import status
@@ -114,7 +114,7 @@ class  OrderDetailView(APIView):
 # # ###########################.......CART...........####################
 class CartListView(APIView):
     def get(self, request):
-        cart = ShoppingCart.objects.all()  # Corrected variable name
+        cart = Product_Cart.objects.all()  # Corrected variable name
         serializer = ShoppingCartSerializer(cart, many=True)
         return Response(serializer.data)
     def post(self,request):
@@ -129,12 +129,12 @@ class CartListView(APIView):
 
 class  CartDetailView(APIView):
     def get(self,request,id,format=None):
-        cart = ShoppingCart.objects.get(id=id)
+        cart = Product_Cart.objects.get(id=id)
         serializer=ShoppingCartSerializer(cart)
         return Response(serializer.data)
     
     def put(self,request,id,format=None):
-        cart = ShoppingCart.objects.get(id=id)
+        cart = Product_Cart.objects.get(id=id)
         serializer= ShoppingCartSerializer(cart,request.data)
         if serializer.is_valid():
             serializer.save()
@@ -142,14 +142,23 @@ class  CartDetailView(APIView):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     
     def delete(self,request,id,format=None):
-        cart = ShoppingCart.objects.get(id=id)
+        cart = Product_Cart.objects.get(id=id)
         cart.delete()
         return Response("cart successfully deleted",status=status.HTTP_204_NO_CONTENT)
     
     def post(self, request, id, format=None):
-        cart = ShoppingCart.objects.get(id=id)
+        cart = Product_Cart.objects.get(id=id)
         product_id = request.data.get('product_id')
         product = Product.objects.get(id=product_id)
         cart.products.add(product)
         serializer = ShoppingCartSerializer(cart)
         return Response(serializer.data, status=status.HTTP_200_OK)
+class Add_To_CartView(APIView):
+    def post(self,request,format=None):
+        cart_id=request.data["cart_id"]
+        product_id= request.data["product_id"]
+        cart=Product_Cart.objects.get(id=cart_id)
+        product= Product.objects.get(id=product_id)
+        upload_cart= Product_Cart.add_product(product)
+        serializer= InventorySerializer(upload_cart)
+        return Response(serializer.data)

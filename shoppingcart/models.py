@@ -1,23 +1,35 @@
 from django.db import models
 from inventory.models import Product
-from customer.models import Customer
+
+class Product_Cart(models.Model):
+    products= models.ManyToManyField(Product)
+    product_name = models.CharField(max_length=32)
+    product_price = models.IntegerField()
+    product_quantity = models.IntegerField()
+    product_image = models.ImageField(upload_to='images/')
+    date_added = models.DateTimeField()
+   
+    def add_product(self, product):
+        self.products.add(product)
+        self.save()
+        return self
+    def get_total(self):
+        products= self.products.all()
+        total=0
+        for product in products:
+            total+=product.price
+        return total
+class Meta:
+        verbose_name_plural = "cart"
 
 
 
-# Create your models here.
-class ShoppingCart(models.Model):
-     STATUS_CHOICES = (
-        ('active', 'Active'),
-        ('completed', 'Completed'),
-        ('abandoned', 'Abandoned'),
-        )
-     user = models.ForeignKey(Customer, on_delete=models.CASCADE,null=True)
-     product = models.ForeignKey(Product, on_delete=models.CASCADE,null=True)
-     product_name=models.CharField(max_length=32,default="")
-     product_price=models.IntegerField(default=1)
-     product_quantity=models.IntegerField(default=1)
-     product_image=models.ImageField(default="")
-     notes=models.TextField()
-     cartstatus=models.CharField(max_length=32,choices=STATUS_CHOICES)
+
+
+
+
+
+    
      
+   
 

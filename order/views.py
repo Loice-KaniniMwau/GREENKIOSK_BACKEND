@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .forms import OrderUploadForm
 from order.models import Order
-from shoppingcart.models import ShoppingCart
+from shoppingcart.models import Product_Cart
 from inventory.models import Product
 
 def order_upload_view(request):
@@ -19,7 +19,7 @@ def order_list(request):
     return render(request,"order/order_list.html",{"orders":orders})
 
 def order_summary(request):
-    product_cart = ShoppingCart.objects.all()
+    product_cart = Product_Cart.objects.all()
     total_cart_price = 0
     for item in product_cart:
         item.total_price = item.product_price * item.product_quantity

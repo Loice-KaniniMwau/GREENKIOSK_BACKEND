@@ -19,6 +19,12 @@ class Product_Cart(models.Model):
         for product in products:
             total+=product.price
         return total
+    def remove_product(self,product):
+         if product in self.products.all():
+              self.products.remove(product)
+              self.save()
+         return self
+
 class Meta:
         verbose_name_plural = "cart"
 

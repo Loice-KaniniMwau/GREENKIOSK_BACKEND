@@ -153,7 +153,7 @@ class  CartDetailView(APIView):
         cart.products.add(product)
         serializer = ShoppingCartSerializer(cart)
         return Response(serializer.data, status=status.HTTP_200_OK)
-class Add_To_CartView(APIView):
+class AddToCartView(APIView):
     def post(self,request,format=None):
         cart_id=request.data["cart_id"]
         product_id= request.data["product_id"]
